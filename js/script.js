@@ -1,60 +1,61 @@
+
 window.addEventListener('load', () => document.querySelector('.preloader')
-.classList.add('hidePreloader'))
+    .classList.add('hidePreloader'))
 
-const CreateCars = (()=>{
-//console.log('hello');
-//car data
-const cars = [];
-// car class
+const CreateCars = (() => {
+    //console.log('hello');
+    //car data
+    const cars = [];
+    // car class
 
-class Car{
-    constructor(make, country, img, special, model, price, type, trans, gas){
-        this.make = make;
-        this.country = country;
-        this.img = img;
-        this.special = special;
-        this.model = model;
-        this.price = price;
-        this.type = type;
-        this.trans = trans;
-        this.gas = gas;
+    class Car {
+        constructor(make, country, img, special, model, price, type, trans, gas) {
+            this.make = make;
+            this.country = country;
+            this.img = img;
+            this.special = special;
+            this.model = model;
+            this.price = price;
+            this.type = type;
+            this.trans = trans;
+            this.gas = gas;
+        }
     }
-}
-// car creation function
- function makeCar(make, country, img = 'img/car-default.jpeg', 
- special = true, model = 'new model', price = 10000, type = 'sedan', 
- trans = 'automatic', gas = '50'){
-    const car = new Car(make, country, img, special, model, price, 
-        type, trans, gas);
-    cars.push(car)
-}
-// makeCar('chevy', 'american');
-// console.log(cars);
+    // car creation function
+    function makeCar(make, country, img = 'img/car-default.jpeg',
+        special = true, model = 'new model', price = 10000, type = 'sedan',
+        trans = 'automatic', gas = '50') {
+        const car = new Car(make, country, img, special, model, price,
+            type, trans, gas);
+        cars.push(car)
+    }
+    // makeCar('chevy', 'american');
+    // console.log(cars);
 
-// produce cars
-function produceCars(){
-    makeCar('chevy', 'american');
-    makeCar('mercedes', 'german', 'img/car-german-1.jpeg', true);
-    makeCar('bmw', 'german', 'img/car-german-2.jpeg');
-    makeCar('bmw', 'german', 'img/car-german-3.jpeg', false, 'some model');
-    makeCar('bmw', 'german', 'img/car-german-4.jpeg', undefined, 'other model');
-    makeCar('mercedes', 'german', 'img/car-german-5.jpeg', false);  
-    makeCar('chevy', 'american', 'img/car-american-1.jpeg')
-    makeCar('chevy', 'american', 'img/car-american-2.jpeg', false)
-    makeCar('chevy', 'american', 'img/car-american-3.jpeg', false)
-    makeCar('chevy', 'american', 'img/car-american-4.jpeg', false)
-    makeCar('chevy', 'american', 'img/car-american-5.jpeg', false)
-}
-produceCars();
-// console.log(cars);
-// special cars
-const specialCars = cars.filter(car => car.special === true)
-//console.log(specialCars);
+    // produce cars
+    function produceCars() {
+        makeCar('chevy', 'american');
+        makeCar('mercedes', 'german', 'img/car-german-1.jpeg', true);
+        makeCar('bmw', 'german', 'img/car-german-2.jpeg');
+        makeCar('bmw', 'german', 'img/car-german-3.jpeg', false, 'some model');
+        makeCar('bmw', 'german', 'img/car-german-4.jpeg', undefined, 'other model');
+        makeCar('mercedes', 'german', 'img/car-german-5.jpeg', false);
+        makeCar('chevy', 'american', 'img/car-american-1.jpeg')
+        makeCar('chevy', 'american', 'img/car-american-2.jpeg', false)
+        makeCar('chevy', 'american', 'img/car-american-3.jpeg', false)
+        makeCar('chevy', 'american', 'img/car-american-4.jpeg', false)
+        makeCar('chevy', 'american', 'img/car-american-5.jpeg', false)
+    }
+    produceCars();
+    // console.log(cars);
+    // special cars
+    const specialCars = cars.filter(car => car.special === true)
+    //console.log(specialCars);
 
-return {
-    cars,
-    specialCars
-}
+    return {
+        cars,
+        specialCars
+    }
 
 })();
 
@@ -62,19 +63,19 @@ return {
 // // console.log(CreateCars.specialCars);
 // console.log(specialCars);
 
-const DisplaySpecialCars = ((CreateCars)=>{
+const DisplaySpecialCars = ((CreateCars) => {
     const specialCars = CreateCars.specialCars;
     // console.log(specialCars);
 
     const info = document.querySelector('.featured-info');
 
     // document loaded event
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener('DOMContentLoaded', () => {
         info.innerHTML = '';
 
         let data = '';
 
-        specialCars.forEach(item =>{
+        specialCars.forEach(item => {
             data += `<!-- single item -->
             <div class="featured-item my-3 d-flex p-2 text-capitalize
             align-items-baseline flex-wrap">
@@ -86,13 +87,13 @@ const DisplaySpecialCars = ((CreateCars)=>{
           </div>
           <!-- end of single item -->`
         })
-        info.innerHTML = data;    
+        info.innerHTML = data;
     })
 
     // change img
-    info.addEventListener('click', (event)=>{
+    info.addEventListener('click', (event) => {
         // console.log(event.target);
-        if(event.target.parentElement.classList.contains('featured-icon')){
+        if (event.target.parentElement.classList.contains('featured-icon')) {
             // console.log('great');
             const img = event.target.parentElement.dataset.img;
             //console.log(img);
@@ -107,21 +108,21 @@ const DisplaySpecialCars = ((CreateCars)=>{
 
 const DisplayCars = ((CreateCars) => {
 
-// all cars
-const cars = CreateCars.cars;
-console.log(cars);
+    // all cars
+    const cars = CreateCars.cars;
+    console.log(cars);
 
-// our container
-const inventory = document.querySelector('.inventory-container');
-// console.log(inventory);
+    // our container
+    const inventory = document.querySelector('.inventory-container');
+    // console.log(inventory);
 
-// content loaded
-document.addEventListener('DOMContentLoaded', ()=>{
-    inventory.innerHTML = '';
+    // content loaded
+    document.addEventListener('DOMContentLoaded', () => {
+        inventory.innerHTML = '';
 
-    let output = '';
-    cars.forEach((car) => {
-        output += `  <!-- single car -->
+        let output = '';
+        cars.forEach((car) => {
+            output += `  <!-- single car -->
         <div class="col-10 mx-auto my-3 col-md-6 col-lg-4 single-car ${car.country}">            
             <div class="card car-card">
                 <img src="${car.img}" class="card-img-top car-img" alt="">
@@ -149,34 +150,34 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     </div>
                 </div>
         <!-- end of single car -->`
+        })
+        inventory.innerHTML = output;
     })
-    inventory.innerHTML = output;
-})
 
 })(CreateCars);
 // filter cars
-const FilterCars = (()=>{
-const filter = document.querySelectorAll('.filter-btn');
-//console.log(filter);
+const FilterCars = (() => {
+    const filter = document.querySelectorAll('.filter-btn');
+    //console.log(filter);
 
-filter.forEach((btn)=>{
-    btn.addEventListener('click',(event)=>{
-        const value = event.target.dataset.filter;
-        //console.log(value);
-        const singleCar = document.querySelectorAll('.single-car');
-        //console.log(singleCar);
+    filter.forEach((btn) => {
+        btn.addEventListener('click', (event) => {
+            const value = event.target.dataset.filter;
+            //console.log(value);
+            const singleCar = document.querySelectorAll('.single-car');
+            //console.log(singleCar);
 
-        singleCar.forEach(car=>{
-            if(value === 'all'){
-                car.style.display = 'block';
-            }
-            else{
-                (!car.classList.contains(value))? car.style.display = 'none':
-                car.style.display = 'block';
-            }
+            singleCar.forEach(car => {
+                if (value === 'all') {
+                    car.style.display = 'block';
+                }
+                else {
+                    (!car.classList.contains(value)) ? car.style.display = 'none' :
+                        car.style.display = 'block';
+                }
+            })
         })
     })
-})
 
 })();
 // show modal
